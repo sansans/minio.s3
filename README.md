@@ -2,7 +2,7 @@
 
 This is a modified version of cloudyr aws.s3 package with support to MinIO S3 storage database. All credits goes to them. This can also be used to access AWS S3 storage. If you see aws.s3 reference, don't be surprised. Its a forked project. 
 
-You can use this package for locally deployed (use `use_https = F`) and cloud deployed.
+You can use this package for locally deployed. Use `use_https = True / False` if using HTTPS.
 
 ## Installation
 
@@ -27,6 +27,12 @@ By default, all packages for AWS/MinIO services allow the use of credentials spe
            "AWS_S3_ENDPOINT" = "192.168.1.1:8085")    # change it to your specific IP and port
 
     ```
+
+# To show current credentials
+Sys.getenv("AWS_S3_ENDPOINT")
+Sys.getenv("AWS_DEFAULT_REGION")
+Sys.getenv("AWS_ACCESS_KEY_ID")
+Sys.getenv("AWS_SECRET_ACCESS_KEY")
 For more information on aws usage, refer to aws.s3 package.  
 
 
@@ -98,6 +104,14 @@ save_object("mtcars.Rdata", file = "mtcars.Rdata", bucket = "my_bucket", use_htt
 
 # put local file into S3
 put_object(file = "mtcars.Rdata", object = "mtcars2.Rdata", bucket = "my_bucket", use_https = F)
+
+# using s3read_using to use function read.csv straight to a dataframe
+mtdf = s3read_using(FUN = read.csv, object = "mtcars.csv", bucket = "my_bucket" , opts = list(use_https = TRUE, region = ""))
+
+# to check what is loaded
+class(mtdf) 
+head (mtdf)
 ```
+
 
 
