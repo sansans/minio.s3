@@ -118,7 +118,7 @@ function(verb = "GET",
         Sig <- aws.signature::signature_v4_auth(
                datetime = d_timestamp,
                region = region,
-               service = "S3",
+               service = "s3",
                verb = verb,
                action = action,
                query_args = query,
