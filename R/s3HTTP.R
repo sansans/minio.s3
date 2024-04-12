@@ -83,6 +83,7 @@ function(verb = "GET",
     action <- if (p$path == "") "/" else paste0("/", p$path)
     canonical_headers <- c(list(host = p$hostname, #paste0(p$hostname, ":", p$port),
                                 `x-amz-date` = d_timestamp), headers)
+    headers[["x-amz-date"]] <- d_timestamp
     if (is.null(query) && !is.null(p$query)) {
         query <- p[["query"]]
     }
@@ -126,9 +127,9 @@ function(verb = "GET",
                key = key, 
                secret = secret, 
                session_token = session_token)
-        headers[["host"]] <- canonical_headers$host
-        headers[["x-amz-date"]] <- d_timestamp
-        headers[["x-amz-content-sha256"]] <- Sig$BodyHash
+        ##headers[["host"]] <- canonical_headers$host
+        ##headers[["x-amz-date"]] <- d_timestamp
+        ##headers[["x-amz-content-sha256"]] <- Sig$BodyHash
         if (!is.null(session_token) && session_token != "") {
             headers[["x-amz-security-token"]] <- session_token
         }
