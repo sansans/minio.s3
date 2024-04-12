@@ -135,7 +135,7 @@ function(verb = "GET",
         }
         headers[["Authorization"]] <- Sig[["SignatureHeader"]]
     }
-    H <- do.call(add_headers, headers)
+    H <- do.call(httr::add_headers, headers)
 
     # execute request
     if (verb == "GET") {
