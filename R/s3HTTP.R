@@ -133,8 +133,9 @@ function(verb = "GET",
             headers[["x-amz-security-token"]] <- session_token
         }
         headers[["Authorization"]] <- Sig[["SignatureHeader"]]
-        H <- do.call(add_headers, headers)
     }
+    H <- do.call(add_headers, headers)
+
     # execute request
     if (verb == "GET") {
         if (!is.null(write_disk)) {
