@@ -129,7 +129,7 @@ function(verb = "GET",
                session_token = session_token)
         ##headers[["host"]] <- canonical_headers$host
         ##headers[["x-amz-date"]] <- d_timestamp
-        ##headers[["x-amz-content-sha256"]] <- Sig$BodyHash
+        headers[["x-amz-content-sha256"]] <- BodyHash
         if (!is.null(session_token) && session_token != "") {
             headers[["x-amz-security-token"]] <- session_token
         }
