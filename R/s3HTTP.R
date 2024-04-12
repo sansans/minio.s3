@@ -112,8 +112,8 @@ function(verb = "GET",
                                             file = is.character(request_body) && file.exists(request_body),
                                             algo = "sha256", serialize = FALSE))
 
-        canonical_headers[["x-amz-content-sha256"]] <-
-            headers[["x-amz-content-sha256"]] <- body_hash
+        canonical_headers[["x-amz-content-sha256"]] <- body_hash 
+        headers[["x-amz-content-sha256"]] <- body_hash
 
         Sig <- aws.signature::signature_v4_auth(
                datetime = d_timestamp,
